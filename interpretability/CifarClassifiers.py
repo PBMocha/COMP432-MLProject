@@ -4,6 +4,7 @@ import torch.optim
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import GridSearchCV
 
 def train_cnn(trn_sets, model, epochs = 50, batch_size=1000, lr=0.05, momentum=0.9, weight_decay=0.001):
     #model.train()
@@ -50,12 +51,22 @@ def test_cnn(test_sets, model):
     
     return preds, avg_acc
 
-def train_decision_tree(X_trn, y_trn):
+def evaluate_decision_tree(trn_sets, tst_sets, param_grid, **kwargs):
 
-    tree_classifier = DecisionTreeClassifier()
-    tree_classifier.fit(X_trn, y_trn)
+    X_trn, y_trn = trn_sets
+    X_tst, y_tst = tst_sets
 
-    return tree_classifier
+    tree_clf = DecisionTreeClassifier(**kwargs)
+    gs = GridSearchCV(tree_clf, param_grid=param_grid, return_train_score=True).fit(X_trn, y_trn)
+
+    trn_acc = gs.best_estimator_.score(X_trn, y_trn)
+    tst_acc = gs.best_estimator_.score(X_tst, y_tst)
+
+    print(tst_acc)
+    
+
+
+    
 
 
 
