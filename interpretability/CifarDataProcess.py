@@ -2,6 +2,10 @@ import numpy as np
 import pickle as pck
 import os
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
+import torch
+import matplotlib.pyplot as plt
 
 def load_file(file):
     """
@@ -85,3 +89,35 @@ def scale_data(X):
     scaler = MinMaxScaler(feature_range=(-1, 1))
     scaler.fit(X)
     return scaler.transform(X)
+
+def save_model(model):
+    filename = './out/cifar10.pth' 
+    torch.save(model.state_dict(), filename)
+    
+def load_model(model, file):
+    load_dict = torch.load(file)
+
+    model.load_state_dict(load_dict)
+
+    return model
+
+def plot_confusion_matrix(y_pred, y_true, classes = [], display_accs=True):
+
+    y_pred_names = [classes[i] for i in y_pred]
+    y_true_names = [classes[i] for i in y_true]
+
+    cm = confusion_matrix(y_true_names, y_pred_names, labels=classes)
+
+    if display_accs:
+        accuracies = cm.diagonal() / cm.sum(axis=1)
+        
+        for i, label in enumerate(classes):
+            print("accuracy of {}: {:.2%}".format(label.decode('ascii'), accuracies[i]))
+
+    d = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=classes)
+    d.plot(xticks_rotation='vertical')
+    plt.show()
+
+    # ConfusionMatrixDisplay.from_predictions(y_true, y_pred, labels=classes, xticks_rotation='vertical')
+
+
