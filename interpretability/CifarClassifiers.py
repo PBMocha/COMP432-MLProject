@@ -63,6 +63,8 @@ def evaluate_decision_tree(trn_sets, tst_sets, param_grid, **kwargs):
     tst_acc = gs.best_estimator_.score(X_tst, y_tst)
 
     print(tst_acc)
+
+    
     
 
 
