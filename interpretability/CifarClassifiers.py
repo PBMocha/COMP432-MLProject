@@ -3,6 +3,7 @@ from torch.nn.modules import activation
 import torch.optim
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
 
@@ -57,14 +58,37 @@ def evaluate_decision_tree(trn_sets, tst_sets, param_grid, **kwargs):
     X_tst, y_tst = tst_sets
 
     tree_clf = DecisionTreeClassifier(**kwargs)
-    gs = GridSearchCV(tree_clf, param_grid=param_grid, return_train_score=True).fit(X_trn, y_trn)
+    gs = GridSearchCV(tree_clf, param_grid=param_grid, verbose=1,cv=3, return_train_score=True).fit(X_trn, y_trn)
 
     trn_acc = gs.best_estimator_.score(X_trn, y_trn)
     tst_acc = gs.best_estimator_.score(X_tst, y_tst)
 
-    print(tst_acc)
+    print(f" Best estimator{gs.best_estimator_}")
+    print(f"Train acc: {trn_acc}")
+    print(f"Test acc: {tst_acc}")
 
+    tree.plot_tree(gs.best_estimator_)
     
+
+    return gs
+
+def activation_maximization(model, step_slope=0.1, steps=10):
+
+    data = np.zeros(shape=(3, 32, 32))
+    x = torch.tensor(data)
+
+    for i in range(steps):
+
+        y = model(x)
+
+        y.backward()
+    
+        x.data += step_slope*x.data.grad
+
+        x.grad.data.zero_()
+
+        print(x)
+
     
 
 

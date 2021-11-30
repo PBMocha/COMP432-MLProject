@@ -120,4 +120,3 @@ def plot_confusion_matrix(y_pred, y_true, classes = [], display_accs=True):
 
     # ConfusionMatrixDisplay.from_predictions(y_true, y_pred, labels=classes, xticks_rotation='vertical')
 
-
