@@ -1,5 +1,6 @@
 from PipelineFunctionsClassification import *
 import os
+plt.rcParams.update({'figure.max_open_warning': 0})
 
 # 1.0 Diabetic Retinopathy Dataset
 
@@ -16,6 +17,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 credit = os.path.join(os.path.dirname(__file__), './data/default of credit card clients.xls')
 data_xls = load_xls_file(credit,2,1)
 X,y = split_data(data_xls,23,1)
+y = y.astype(np.int32)
 X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
 
 train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
