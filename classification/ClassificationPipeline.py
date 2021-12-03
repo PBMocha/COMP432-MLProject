@@ -4,6 +4,7 @@ plt.rcParams.update({'figure.max_open_warning': 0})
 
 # 1.0 Diabetic Retinopathy Dataset
 
+print("\n\nDIABETIC RETINOPATHY DATASET")
 diabetic = os.path.join(os.path.dirname(__file__), './data/messidor_features.arff')
 data_arff = load_arff_file(diabetic,data_type='float64',delimiter_used=',',skip_rows=24,use_cols=None)
 X,y = split_data(data_arff,19,1)
@@ -14,6 +15,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 # 2.0 Default Credit Dataset
 
+print("\n\nDEFAULT CREDIT DATASET")
 credit = os.path.join(os.path.dirname(__file__), './data/default of credit card clients.xls')
 data_xls = load_xls_file(credit,2,1)
 X,y = split_data(data_xls,23,1)
@@ -25,6 +27,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 # 3.0 Breast Cancer Dataset
 
+print("\n\nBREAST CANCER")
 # Load the data and split into features and targets, X and y
 # This data is not loaded using a predefined function since it contains strings as targets, so it is dealt with differently
 breast_cancer = os.path.join(os.path.dirname(__file__), './data/wdbc.data')
@@ -46,6 +49,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 # 4.0 Statlog German Credit Dataset
 
+print("\n\nGERMAN CREDIT DATASET")
 # Load the data and split into features and targets, X and y
 german = os.path.join(os.path.dirname(__file__), './data/german.data-numeric')
 data = np.loadtxt(german,dtype='float64')
@@ -57,6 +61,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 # 5.0 Adult Dataset
 
+print("\n\nADULT DATASET")
 adult = os.path.join(os.path.dirname(__file__), './data/adult.data')
 df_adult = pd.read_csv(adult, names=['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital_status', 'occupation', 'relationship','race', 'sex', 'capital_gain', 'capital_loss', 'hours_per_week', 'native_country', 'salary'])
 df_adult_test = pd.read_csv(adult,skiprows=1, names=['age', 'workclass', 'fnlwgt', 'education', 'education_num', 'marital_status', 'occupation', 'relationship','race', 'sex', 'capital_gain', 'capital_loss', 'hours_per_week', 'native_country', 'salary'])
@@ -85,6 +90,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 # 6.0 Yeast Dataset
 
+print("\n\nYEAST DATASET")
 yeast = os.path.join(os.path.dirname(__file__), './data/yeast.data')
 data_yeast = np.loadtxt(yeast,dtype=str)
 X = data_yeast[:,1:-1]
@@ -97,6 +103,7 @@ train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 # 7.0 Thoracic Surgery Dataset
 
+print("\n\nTHORACIC SURGERY DATASET")
 thoracic = os.path.join(os.path.dirname(__file__), './data/ThoraricSurgery.arff')
 data = np.loadtxt(thoracic,dtype=str,skiprows=21, delimiter = ',')
 # Account for the categorical data in columns 0,3,9
@@ -118,6 +125,7 @@ train_all_classifiers(X_trn, y_trn, X_tst, y_tst)
 
 # 8.0 Seismic Bumps Dataset
 
+print("\n\nSEISMIC BUMPS DATASET")
 seismic = os.path.join(os.path.dirname(__file__), './data/seismic-bumps.arff')
 data = np.loadtxt(seismic,dtype=str,delimiter=',', skiprows=154) 
 # Account for the categorical data in columns 0,1,2,7
@@ -129,3 +137,6 @@ y = y.astype(np.int32)
 X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
 
 train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
+
+
+# Novelty Component, 
