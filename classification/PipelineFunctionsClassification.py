@@ -4,6 +4,8 @@ import sklearn
 from sklearn.model_selection import train_test_split
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+from sklearn.compose import make_column_transformer
 
 
 # ML Algorithms
@@ -47,27 +49,6 @@ def load_xls_file(filename,skip_rows,skip_cols):
     return data
 
 def split_data(data,n_features,target_location=1):
-    """" 
-    This function is to split an array of data into two arrays, the features (X) and the targets (y) 
-    Parameters:
-        data - array of data
-        n_features - number of features in the data
-        target_location - if the column of targets is the first or last column in the data (input 0 for first col, and 1 for last col)
-    Returns: array X of features, and array y of targets
-    """
-    if target_location == 1:
-        X = data[:,0:n_features]
-        y = data[:,n_features:n_features+1].astype(np.int32)
-    else:
-        X = data[:,1:n_features+1]
-        y = data[:,0:1].astype(np.int32)
-        
-    y_shape = y.shape[0]
-    y = y.reshape(y_shape,)
-    
-    return X, y
-
-def split_data_regression(data,n_features,target_location=1):
     """" 
     This function is to split an array of data into two arrays, the features (X) and the targets (y) 
     Parameters:
@@ -195,7 +176,7 @@ def train_dummy_model(X_trn, y_trn, X_tst, y_tst,estimator_type):
     clf = estimator_type().fit(X_trn,y_trn)
     print(f'Dummy model: {clf}')
     print(f'With {round(100*clf.score(X_trn,y_trn),3)}% train accuracy') 
-    print(f'With {round(100*clf.score(X_tst,y_tst),3)}% test accuracy')
+    print(f'With {round(100*clf.score(X_tst,y_tst),3)}% test accuracy\n')
     return clf
 
 def grid_search(X_trn, y_trn, X_tst, y_tst, estimator_type, param_grid, **kwargs):     
@@ -215,7 +196,7 @@ def grid_search(X_trn, y_trn, X_tst, y_tst, estimator_type, param_grid, **kwargs
     gs_clf = sklearn.model_selection.GridSearchCV(clf,param_grid,verbose=1,cv=3,return_train_score=True).fit(X_trn,y_trn)
     print(f'Best estimator: {gs_clf.best_estimator_}')
     print(f'With {round(100*gs_clf.best_estimator_.score(X_trn,y_trn),3)}% train accuracy') 
-    print(f'With {round(100*gs_clf.best_estimator_.score(X_tst,y_tst),3)}% test accuracy')
+    print(f'With {round(100*gs_clf.best_estimator_.score(X_tst,y_tst),3)}% test accuracy\n')
     return gs_clf
 
 
