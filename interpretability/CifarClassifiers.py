@@ -72,20 +72,24 @@ def evaluate_decision_tree(trn_sets, tst_sets, param_grid, **kwargs):
 
     return gs
 
-def activation_maximization(model, step_slope=0.1, steps=10):
+def activation_maximization(y_act, model, step_slope=0.2, steps=10):
 
-    data = np.zeros(shape=(3, 32, 32))
-    x = torch.tensor(data)
-
+    # data = np.zeros(shape=(1, 3, 32, 32))
+    loss = torch.nn.CrossEntropyLoss()
+    x = torch.zeros((1, 3, 32, 32), requires_grad=True).float()
+    #x = torch.FloatTensor(data.astype('float32'), requires_grad=True)
+    act = torch.FloatTensor([[1, 0, 0, 0, 0 ,0 ,0 ,0 ,0 ,0]])
+    #torch.reshape(act, ())
+    fig = plt.figure(figsize=(12,12))
     for i in range(steps):
 
         y = model(x)
 
-        y.backward()
-    
-        x.data += step_slope*x.data.grad
+        y.backward(act)
+        print(x.data)
+        x += step_slope*x.grad
 
-        x.grad.data.zero_()
+        # x.grad.data.zero_()
 
         print(x)
 
