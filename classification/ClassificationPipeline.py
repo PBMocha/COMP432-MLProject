@@ -139,4 +139,13 @@ X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
 train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
 
 
-# Novelty Component, 
+# Novelty Component - Zoo Animal Classification Dataset
+
+print("\n\nZOO ANIMALS DATASET")
+zoo = os.path.join(os.path.dirname(__file__), './data/zoo.csv')
+cols = np.arange(1,18)
+data_zoo = np.loadtxt(zoo,dtype='float64',delimiter=',',usecols=cols,skiprows=1)
+X,y = split_data(data_zoo,16,1)
+X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
+
+train_all_classifiers(X_trn,y_trn,X_tst,y_tst)
