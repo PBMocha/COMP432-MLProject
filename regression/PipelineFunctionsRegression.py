@@ -362,18 +362,18 @@ def train_gaussian_process_regression(X_trn, y_trn, X_tst, y_tst):
     """
     # Test a few different hyperparameters for Gaussian process regression: alpha
     alpha_gpr = [0.05, 0.1, 0.2, 0.3]
-    param_grid_gnb = {'alpha' : alpha_gpr}
+    param_grid_gpr = {'alpha' : alpha_gpr}
 
     # Train a dummy Gaussian process regression model with default values
     dummy_gpr = train_dummy_model(X_trn, y_trn, X_tst, y_tst, sklearn.gaussian_process.GaussianProcessRegressor)
 
     # Train different Gaussian process regression models, using grid search and cross validation to find best hyperparameters.
-    gs_gpr = grid_search(X_trn, y_trn, X_tst, y_tst, sklearn.gaussian_process.GaussianProcessRegressor,param_grid_gnb)
+    gs_gpr = grid_search(X_trn, y_trn, X_tst, y_tst, sklearn.gaussian_process.GaussianProcessRegressor,param_grid_gpr)
 
     # Plot heatmap of the gridsearch
     plot_gridsearch_1(gs_gpr, alpha_gpr, 'alpha')
 
-    return gs_gnb.best_estimator_
+    return gs_gpr.best_estimator_
 
 
 
@@ -405,7 +405,7 @@ def train_neural_network_regression(X_trn, y_trn, X_tst, y_tst):
 
 
 
-def train_all_classifiers(X_trn,y_trn,X_tst,y_tst):
+def train_all_regressors(X_trn,y_trn,X_tst,y_tst):
     """" 
     This function is to call the 8 functions to train all the different types of classifiers on a dataset
     Parameters:
@@ -414,11 +414,11 @@ def train_all_classifiers(X_trn,y_trn,X_tst,y_tst):
         X_tst - the features from testing set
         y_tst - the targets from testing set 
     """
-    train_logistic_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_svm_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_decision_tree_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_random_forest_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_knn_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_ada_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_naive_bayes_classifier(X_trn,y_trn,X_tst,y_tst)
-    train_neural_network_classifier(X_trn,y_trn,X_tst,y_tst)
+    train_linear_regression(X_trn,y_trn,X_tst,y_tst)
+    train_svm_regression(X_trn,y_trn,X_tst,y_tst)
+    train_decision_tree_regression(X_trn,y_trn,X_tst,y_tst)
+    train_random_forest_regression(X_trn,y_trn,X_tst,y_tst)
+    train_knn_regression(X_trn,y_trn,X_tst,y_tst)
+    train_ada_regression(X_trn,y_trn,X_tst,y_tst)
+    train_gaussian_process_regression(X_trn,y_trn,X_tst,y_tst)
+    train_neural_network_regression(X_trn,y_trn,X_tst,y_tst)
