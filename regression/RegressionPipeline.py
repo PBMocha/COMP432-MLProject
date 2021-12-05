@@ -5,6 +5,7 @@ import os
 plt.rcParams.update({'figure.max_open_warning': 0})
 
 # 1.0 Wine Quality Red Dataset
+print("\n\nWine Quality Red Dataset")
 
 # Load the data and split into features and targets, X and y
 rd = pd.read_csv("./data/winequality-red.csv", delimiter = ';')
@@ -18,6 +19,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 # 1.1 Wine Quality White Dataset
 
+print("\n\nWine Quality White Dataset")
 # Load the data and split into features and targets, X and y
 rd = pd.read_csv("./data/winequality-white.csv", delimiter = ';')
 red_data = rd.to_numpy()
@@ -29,6 +31,7 @@ X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
 train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 # 2.0 Communities and Crime Dataset
+print("\n\nCommunities and Crime Dataset")
 
 # Load the data and split into features and targets, X and y
 data = np.loadtxt("./data/communities.data", usecols=np.r_[0:1, 4:30,31:101,127:128], delimiter = ',')
@@ -41,6 +44,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 
 # 3.0 QSAR aquatic toxicity Dataset
+print("\n\nQSAR aquatic toxicity Dataset")
 
 # Load the data and split into features and targets, X and y
 df = pd.read_csv("./data/qsar_aquatic_toxicity.csv", delimiter = ';')
@@ -54,6 +58,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 
 # 4.0 Facebook Metrics Dataset
+print("\n\nFacebook Metrics Dataset")
 
 # Load the data and split into features and targets, X and y
 fb = pd.read_csv("./data/dataset_Facebook.csv", delimiter = ';')
@@ -76,6 +81,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 
 # 5.0 Bike Sharing Dataset
+print("\n\nBike Sharing Dataset")
 
 # Load the data and split into features and targets, X and y
 df_bike = pd.read_csv('./data/hour.csv', sep=',')
@@ -93,6 +99,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 
 # 6.0 Student Performance Dataset
+print("\n\nStudent Performance Dataset")
 
 # Load the data and split into features and targets, X and y
 df = pd.read_csv("./data/student-por.csv", sep = ';')
@@ -113,6 +120,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 # 7.0 Concrete Compressive Strength Dataset
 
+print("\n\nConcrete Compressive Strength Dataset")
 # Load the data and split into features and targets, X and y
 data = load_xls_file(filename = './data/Concrete_Data.xls', skip_rows=1,skip_cols=0)
 X, y = split_data_regression(data,8,1)
@@ -124,6 +132,7 @@ train_all_regressors(X_trn,y_trn,X_tst,y_tst)
 
 # 8.0 SGEMM GPU kernel performance Dataset
 
+print("\n\nSGEMM GPU kernel performance Dataset")
 # Load the data and split into features and targets, X and y
 data_sgemm = np.loadtxt('./data/sgemm_product.csv',dtype='float64',delimiter=',',skiprows=1)
 sl = slice(1000)
@@ -132,6 +141,35 @@ X = data_sgemm[:,:14]
 # Since we have 4 target columns for 4 different runs, we compute the average of those 4 columns to use as our target
 y_temp = data_sgemm[:,14:18]
 y = np.average(y_temp, axis=1)
+
+X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
+
+train_all_regressors(X_trn,y_trn,X_tst,y_tst)
+
+# Novelty COmponent - Caffeine Content of Drinks
+
+print("\n\nNovelty COmponent - Caffeine Content of Drinks")
+# Load the data and split into features and targets, X and y
+caf = pd.read_csv("./data/caffeine.csv", delimiter = ',')
+caf_data = caf.to_numpy()
+
+# Assign int values to drink categories
+for i in range(len(caf_data)):
+    if caf_data[i][4] == 'Coffee':
+        caf_data[i][4] = 0
+    elif caf_data[i][4] == 'Energy Drinks':
+        caf_data[i][4] = 1
+    elif caf_data[i][4] == 'Energy Shots':
+        caf_data[i][4] = 2
+    elif caf_data[i][4] == 'Soft Drinks': 
+        caf_data[i][4] = 3
+    elif caf_data[i][4] == 'Tea': 
+        caf_data[i][4] = 4
+    else:
+        caf_data[i][4] = 5
+        
+X = caf_data[:,1:-1]
+y = caf_data[:,-1:].astype(np.int32).reshape(610,)
 
 X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
 
