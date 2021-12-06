@@ -1,4 +1,4 @@
-# COMP 432 Default Project
+# README for G10 - COMP 432 Default Project
 ## Comparision of various Classification and Regression ML models, as well investigating the interpretability of CNNs and DecisionTrees over the CIFAR10 dataset
 
 ### Submitted by:
