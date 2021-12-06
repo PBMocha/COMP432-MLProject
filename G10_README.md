@@ -1,1 +1,0 @@
-# README for G10 - COMP432-MLProject
