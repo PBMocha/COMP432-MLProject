@@ -168,8 +168,8 @@ for i in range(len(caf_data)):
     else:
         caf_data[i][4] = 5
         
-X = caf_data[:,1:-1]
-y = caf_data[:,-1:].astype(np.int32).reshape(610,)
+X = np.delete(caf_data[:,1:],2,1)
+y = caf_data[:,3:4].astype(np.int32).reshape(610,)
 
 X_trn, X_tst, y_trn, y_tst = preprocess(X,y)
 
