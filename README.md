@@ -65,12 +65,12 @@ The code is organized by different tasks
         - `./classification/ClassificationPipeline.py`   -- contains script to run classification pipeline on all datasets
         - `./classification/ClassificationPipeline.ipynb`   -- jupyter notebook as an option to run the classification pipeline
         - `./classification/PipelineFunctionsClassification.py` -- contains helper functions for running the classifications
-    - `./regression/` -- contains code and jupyter notebook for running Classification models
+    - `./regression/` -- contains code and jupyter notebook for running Regression models
         - `./regression/data`                        -- contains datasets that are being used for regression
         - `./regression/PipelineFunctionsRegression.py`                       -- contains functions to help with the regression pipeline
         - `./regression/RegressionPipeline.ipynb`                       -- jupyter notebook option to run regression pipeline
         - `./regression/RegressionPipeline.py`                       -- script to run the regression pipeline on datasets
-    - `./interpretability/` -- contains code and jupyter notebook for running Classification models
+    - `./interpretability/` -- contains code and jupyter notebook for training a Convolutional Neural Network and a Decision Tree on CIFAR1- dataset
         - `./interpretability/data`                        -- contains CIFAR10 dataset
         - `./interpretability/out`                       -- contains output plots and figures from the CNN and Decision Tree
         - `./interpretability/Cifar10Classification.ipynb`  -- juyter notebook to run the interpretability task on CIFAR10
