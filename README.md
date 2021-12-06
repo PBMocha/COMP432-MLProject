@@ -8,7 +8,7 @@
 
 ### Task 1 and 2
 
-The purpose of this task is to train and compare different machine learning models on datasets from the UCI repository. 
+The purpose of these tasks are to train and compare different machine learning models on datasets from the UCI repository. 
 
 Classification Algorithms used: 
 
@@ -76,7 +76,7 @@ The code is organized by different tasks
         - `./interpretability/Cifar10Classification.ipynb`  -- juyter notebook to run the interpretability task on CIFAR10
         - `./interpretability/CifarClassifers.py`                       -- contains code for handling CNN and Decision Tree classification
         - `./interpretability/CifarDataProcess.py`                       -- conatins code for handling data preprocessing on CIFAR10 
-    - `./plots/` -- contains code and jupyter notebook for running Classification models
+    - `./plots/` -- contains plots from the classification and regression experiments
         - `./plots/classification/`                        -- contains output plots / figures from classification models
         - `./plots/regression`                       -- contains output plots / figures from regression models
     
@@ -97,7 +97,31 @@ There are 2 options to run and test the program.
 ## Datasets
 
 ### UCI
-- the various datasets can be downloaded here: https://archive.ics.uci.edu/ml/index.php
+- the various datasets can be downloaded here:
+- Classification:
+    - https://archive.ics.uci.edu/ml/datasets/Diabetic+Retinopathy+Debrecen+Data+Set
+    - https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients
+    - https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)
+    - https://archive.ics.uci.edu/ml/datasets/Statlog+(German+Credit+Data)
+    - https://archive.ics.uci.edu/ml/datasets/adult
+    - https://archive.ics.uci.edu/ml/datasets/Yeast
+    - https://archive.ics.uci.edu/ml/datasets/Thoracic+Surgery+Data
+    - https://archive.ics.uci.edu/ml/datasets/seismic-bumps
+    
+- Regression:
+    - http://archive.ics.uci.edu/ml/datasets/Wine+Quality
+    - http://archive.ics.uci.edu/ml/datasets/Communities+and+Crime
+    - http://archive.ics.uci.edu/ml/datasets/QSAR+aquatic+toxicity
+    - http://archive.ics.uci.edu/ml/datasets/Facebook+metrics
+    - http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset
+    - http://archive.ics.uci.edu/ml/datasets/Student+Performance
+    - http://archive.ics.uci.edu/ml/datasets/Concrete+Compressive+Strength
+    - http://archive.ics.uci.edu/ml/datasets/SGEMM+GPU+kernel+performance
+    
 ### CIFAR10 
 - The CIFAR10 dataset can be downloaded here: https://www.cs.toronto.edu/~kriz/cifar.html
     - Note : Its the python version
+### Kaggle
+- the novelty component datasets were downloaded from kaggle:
+- https://www.kaggle.com/uciml/zoo-animal-classification?select=zoo.csv
+- https://www.kaggle.com/heitornunes/caffeine-content-of-drinks
