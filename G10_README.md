@@ -1,2 +1,1 @@
-# README for G10
-# COMP432-MLProject
+# README for G10 - COMP432-MLProject
